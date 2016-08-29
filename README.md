@@ -18,5 +18,3 @@ $ ./install
 ```
 
 The install script uses sudo commands so you need sudo privileges.
-
-
