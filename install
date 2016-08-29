@@ -1,0 +1,28 @@
+#!/bin/bash
+
+echo "Must be run with sudo privs"
+echo "Assumes running user will be pi. Change user in supervisord.conf as necessary"
+
+echo "Installing pip..."
+sudo apt-get install python-pip
+
+echo "Installing supervisor with pip"
+sudo pip install supervisor
+
+echo "Copying supervisor configuration and init scripts to /etc"
+
+sudo cp supervisord.conf /etc/supervisord.conf
+sudo chmod go-rwx /etc/supervisord.conf
+
+sudo cp init.d/supervisord /etc/init.d/supervisord
+sudo chown root.root /etc/init.d/supervisord
+sudo chmod +x /etc/init.d/supervisord
+
+sudo ln -sf /etc/init.d/supervisord /etc/rc3.d/S05supervisord
+
+sudo mkdir -p /etc/supervisor.d
+sudo chown `whoami` /etc/supervisor.d
+
+sudo mkdir /var/supervisor
+sudo chown `whoami` /var/supervisor
+
