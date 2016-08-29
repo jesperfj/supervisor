@@ -11,10 +11,10 @@ sudo pip install supervisor
 
 echo "Copying supervisor configuration and init scripts to /etc"
 
-sudo cp supervisord.conf /etc/supervisord.conf
+sudo cp etc/supervisord.conf /etc/supervisord.conf
 sudo chmod go-rwx /etc/supervisord.conf
 
-sudo cp init.d/supervisord /etc/init.d/supervisord
+sudo cp etc/init.d/supervisord /etc/init.d/supervisord
 sudo chown root.root /etc/init.d/supervisord
 sudo chmod +x /etc/init.d/supervisord
 
@@ -23,6 +23,7 @@ sudo ln -sf /etc/init.d/supervisord /etc/rc3.d/S05supervisord
 sudo mkdir -p /etc/supervisor.d
 sudo chown `whoami` /etc/supervisor.d
 
-sudo mkdir /var/supervisor
+echo "Creating /var/supervisor directory"
+sudo mkdir -p /var/supervisor
 sudo chown `whoami` /var/supervisor
 
